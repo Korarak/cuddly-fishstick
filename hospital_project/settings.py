@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-9h-@an@74osxifgs6cvhrs_tehujntntc6=w(zlf!nc!bt^jst
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['*']
+CSRF_TRUSTED_ORIGINS = ['https://cuddly-fishstick-production.up.railway.app']
 
 
 # Application definition
