@@ -34,16 +34,15 @@ def manage_drug(request):
     return render(request,'edit_drug.html',context)
 
 def manage_type(request):
-    show_type = d_type.objects.all()
-    context  = {"type" : show_type}
-    return render(request,'manage_type.html',context)
+    show_type = d_type.objects.all() #ORMแสดงค่าทั้งหมดของตารางd_type
+    context  = {"type" : show_type} #เก็บเข้าตัวแปร context
+    return render(request,'manage_type.html',context) #ส่ง context
 
 
 def delete_drug(request,pk):
     table = drug.objects.get(drug_id=pk)
     table.delete()
     return redirect('/manage_drug')
-
 
 def delete_type(request,pk):
     table = d_type.objects.get(type_id=pk)
@@ -86,11 +85,11 @@ def increase_drug(request,pk):
 
 def decrease_drug(request,pk):
     print (pk)
-    table = drug.objects.get(drug_id=pk)
+    table = drug.objects.get(drug_id=pk)#ORM 
     update_qty = table.drug_qty-1
     table.drug_qty = update_qty
     table.save()
-    return redirect('/manage_drug') 
+    return redirect('/manage_drug')
 
 def custom_login(request):
     if request.method == 'POST':
@@ -100,7 +99,7 @@ def custom_login(request):
         if user is not None:
             login(request, user)
             messages.success(request, 'Login successful!')
-            return redirect('/manage_drug')
+            return redirect('/')
         else:
             messages.error(request, 'Login failed. Please check your credentials.')
             pass
@@ -108,4 +107,9 @@ def custom_login(request):
 
 def logout_view(request):
         logout(request)
-        return render(request, 'login.html')
+        return redirect('/login')
+
+def buy_drug(request):
+    table = drug.objects.all()
+    context = {"drugdata":table}#ข้อมูลจะอยู่ใน context
+    return render(request,"buy_drug.html",context)

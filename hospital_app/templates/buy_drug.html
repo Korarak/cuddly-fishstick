@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+<h1>เบิกยา</h1>
+ชื่อยา : <select name="drug_id">
+    {% for i in drugdata %}
+        <option value="{{i.drug_id}}">{{i.drug_name}}</option>
+    {% endfor %}
+        </select>
+จำนวน : <input type="number" min="0" max="10">
+ชื่อคนเบิก : <input type="text" name="username" value="{{user.username}}">
+<input type="submit">
+</div>
+{% endblock content %}
+
+
